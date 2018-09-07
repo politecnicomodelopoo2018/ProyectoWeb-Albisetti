@@ -326,6 +326,10 @@ div.logo img{
     width: 100%;
 }
 
+div.logo img:hover{
+    cursor: pointer;
+}
+
 @media only screen and (min-width: 768px){
     div.logo{
         width: 33%;

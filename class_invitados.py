@@ -23,3 +23,4 @@ def cargar(id):
             invitado.url_imagen = item["url_imagen"]
 
     return invitado
+

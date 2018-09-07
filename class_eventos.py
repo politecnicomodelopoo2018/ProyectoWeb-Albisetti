@@ -12,20 +12,42 @@ class eventos(object):
     idInvitado = None
 
 
-@staticmethod
-def cargar(id):
-    info = Database().run("Select * FROM eventos")
+    @staticmethod
+    def cargar(id):
+        info = Database().run("Select * FROM eventos")
 
-    evento = eventos()
+        evento = eventos()
 
-    for item in info:
-        if id == item["idEvento"]:
-            evento.idInvitado = item["idEvento"]
-            evento.nombre_invitado = item["nombre_evento"]
-            evento.apellido_invitado = item["fecha_evento"]
-            evento.descripcion = item["hora_evento"]
-            evento.url_imagen = item["clave"]
-            evento.idCategoria = item["idCategoria"]
-            evento.idInvitado = item["idInvitado"]
+        for item in info:
+            if id == item["idEvento"]:
+                evento.idEvento = item["idEvento"]
+                evento.nombre_evento = item["nombre_evento"]
+                evento.fecha_evento = item["fecha_evento"]
+                evento.hora_evento = item["hora_evento"]
+                evento.clave = item["clave"]
+                evento.idCategoria = item["idCategoria"]
+                evento.idInvitado = item["idInvitado"]
 
-    return evento
+        return evento
+
+
+    def alta(self):
+
+        Database().run("INSERT INTO eventos VALUES(NULL, %s, %s, %s, %s, %s, %s)" %(self.nombre_evento,
+                                                                                    self.fecha_evento,
+                                                                                    self.hora_evento,
+                                                                                    self.clave, self.idCategoria,
+                                                                                    self.idInvitado))
+
+
+    def baja(self):
+
+        Database().run("DELETE FROM eventos WHERE idEvento = '%s'" % (self.idEvento))
+
+
+    def modificacion(self):
+
+        Database().run(("UPDATE Categorias SET nombre_evento = '%s', fecha_evento = '%s', "
+                        "hora_evento = '%s', clave = '%s', idCategoria = '%s', idInvitado = '%s' WHERE idEvento = '%s'"
+                        % (self.nombre_evento, self.fecha_evento, self.hora_evento, self.clave, self.idCategoria,
+                           self.idInvitado, self.idEvento)))
