@@ -24,9 +24,16 @@ class categoria_evento(object):
 
     def alta(self):
 
-        Database().run("INSERT INTO categoria_evento Values (NULL, %s, '%s')" %(self.cat_evento, self.icono))
+        Database().run("INSERT INTO categoria_evento Values (NULL, '%s', '%s')" %(self.cat_evento, self.icono))
 
 
     def baja(self):
 
-        infoAux = Database().run("Select idCategoria FROM categoria_evento WHERE idCategoria = %s" % self.idCategoria)
+        Database().run("DELETE FROM eventos WHERE idCategoria = '%s'" %(self.idCategoria))
+
+        Database().run("DELETE FROM categoria_evento WHERE idCategoria = '%s'" %(self.idCategoria))
+
+
+    def modificacion(self):
+
+        Database().run("UPDATE categoria_evento SET cat_evento = '%s', icono = '%s'"%(self.cat_evento, self.icono))

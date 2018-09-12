@@ -11,11 +11,10 @@ class eventos(object):
     idCategoria = None
     idInvitado = None
 
-
     @staticmethod
     def cargar(id):
-        info = Database().run("Select * FROM eventos")
 
+        info = Database().run("Select * FROM eventos")
         evento = eventos()
 
         for item in info:
@@ -30,20 +29,18 @@ class eventos(object):
 
         return evento
 
-
     def alta(self):
 
-        Database().run("INSERT INTO eventos VALUES(NULL, %s, %s, %s, %s, %s, %s)" %(self.nombre_evento,
-                                                                                    self.fecha_evento,
-                                                                                    self.hora_evento,
-                                                                                    self.clave, self.idCategoria,
-                                                                                    self.idInvitado))
-
+        Database().run("INSERT INTO eventos VALUES(NULL, '%s', '%s', '%s', '%s', '%s', '%s')" % (self.nombre_evento,
+                                                                                                 self.fecha_evento,
+                                                                                                 self.hora_evento,
+                                                                                                 self.clave,
+                                                                                                 self.idCategoria,
+                                                                                                 self.idInvitado))
 
     def baja(self):
 
         Database().run("DELETE FROM eventos WHERE idEvento = '%s'" % (self.idEvento))
-
 
     def modificacion(self):
 
