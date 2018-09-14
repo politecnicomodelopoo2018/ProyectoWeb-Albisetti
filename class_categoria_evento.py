@@ -15,7 +15,7 @@ class categoria_evento(object):
 
         for item in info:
             if id == item["idCategoria"]:
-                categoria.idCategoria = item["iddCategoria"]
+                categoria.idCategoria = item["idCategoria"]
                 categoria.cat_evento = item["cat_evento"]
                 categoria.icono = item["icono"]
 

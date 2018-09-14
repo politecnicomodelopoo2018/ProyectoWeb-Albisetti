@@ -2,7 +2,9 @@ from pymysql import *
 from flask import request, jsonify, render_template, Flask
 from database import *
 
-#Database.setConnection("127.0.0.1", "root", "alumno", "web")
+Data = Database()
+
+Data.setConnection("127.0.0.1", "root", "alumno", "web")
 
 app = Flask(__name__)
 
