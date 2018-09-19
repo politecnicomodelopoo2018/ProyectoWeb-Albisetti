@@ -9,15 +9,14 @@ class categoria_evento(object):
 
     @staticmethod
     def cargar(id):
-        info = Database().run("Select * FROM categoria_evento")
+        info = Database().run("Select * FROM categoria_evento WHERE idCategoria = '%s'" %(id))
 
         categoria = categoria_evento()
 
         for item in info:
-            if id == item["idCategoria"]:
-                categoria.idCategoria = item["idCategoria"]
-                categoria.cat_evento = item["cat_evento"]
-                categoria.icono = item["icono"]
+            categoria.idCategoria = item["idCategoria"]
+            categoria.cat_evento = item["cat_evento"]
+            categoria.icono = item["icono"]
 
         return categoria
 

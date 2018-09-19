@@ -14,18 +14,17 @@ class eventos(object):
     @staticmethod
     def cargar(id):
 
-        info = Database().run("Select * FROM eventos")
+        info = Database().run("Select * FROM eventos WHERE idEvento = '%s'" %(id))
         evento = eventos()
 
         for item in info:
-            if id == item["idEvento"]:
-                evento.idEvento = item["idEvento"]
-                evento.nombre_evento = item["nombre_evento"]
-                evento.fecha_evento = item["fecha_evento"]
-                evento.hora_evento = item["hora_evento"]
-                evento.clave = item["clave"]
-                evento.idCategoria = item["idCategoria"]
-                evento.idInvitado = item["idInvitado"]
+            evento.idEvento = item["idEvento"]
+            evento.nombre_evento = item["nombre_evento"]
+            evento.fecha_evento = item["fecha_evento"]
+            evento.hora_evento = item["hora_evento"]
+            evento.clave = item["clave"]
+            evento.idCategoria = item["idCategoria"]
+            evento.idInvitado = item["idInvitado"]
 
         return evento
 

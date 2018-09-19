@@ -190,6 +190,15 @@
           <p>Nestor Marinelli</p>
         </div>
       </li>
+
+      {%for item in invitado%}
+      <li>
+        <div class="invitado">
+          <img src='{{item.url_imagen}}' alt="imagen tercer invitado especial">
+          <p>{{item.nombre_invitado}}{{item.apellido_invitado}}</p>
+        </div>
+      </li>
+      {%endfor%}
     </ul>
   </section>
 

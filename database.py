@@ -27,8 +27,7 @@ class Database(object):
                              autocommit=True
                              )
 
-        cursor = db.cursor(
-            pymysql.cursors.DictCursor)
+        cursor = db.cursor(pymysql.cursors.DictCursor)
 
         cursor.execute(query)
 
