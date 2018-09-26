@@ -3,9 +3,8 @@ from database import *
 class suveniers(object):
 
     idSuveniers = None
-    costo_camisa = None
-    costo_etiquetas = None
-    idPublico = None
+    descripcion_suvenier = None
+    costo_suvenier = None
 
     @staticmethod
     def cargar(id):
@@ -17,8 +16,7 @@ class suveniers(object):
 
         for item in info:
             suvenier.idSuveniers = item["idSuveniers"]
-            suvenier.costo_camisa = item["costo_camisa"]
-            suvenier.costo_etiquetas = item["costo_etiquetas"]
-            suvenier.idPublico = item["idPublico"]
+            suvenier.descripcion_suvenier = item["descripcion_suvenier"]
+            suvenier.costo_suvenier = item["costo_suvenier"]
 
         return suvenier

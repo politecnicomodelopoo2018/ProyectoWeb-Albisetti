@@ -17,10 +17,28 @@ Data.setConnection("127.0.0.1", "root", "alumno", "web")
 app = Flask(__name__)
 
 invitado = Data.run("SELECT * FROM invitados")
+
 listaInvitados = []
+
 for item in invitado:
     invita = invitados.cargar(item["idInvitado"])
     listaInvitados.append(invita)
+
+boleto = Data.run("SELECT * FROM boletos")
+
+listaBoletos = []
+
+for item in boleto:
+    bolet = boletos.cargar(item["idBoletos"])
+    listaBoletos.append(bolet)
+
+suvenier = Data.run("SELECT * FROM suveniers")
+
+listaSuveniers = []
+
+for item in suvenier:
+    suvenier = suveniers.cargar(item["idSuveniers"])
+    listaSuveniers.append(suvenier)
 
 @app.route("/")
 def inicio():
@@ -29,7 +47,7 @@ def inicio():
 @app.route("/registro")
 def registro():
 
-    return render_template("registro.html")
+    return render_template("registro.html", listaBoletos = listaBoletos, listaSuveniers = listaSuveniers)
 
 @app.route("/registroCompleto", methods=["GET", "POST"])
 def checkear():
@@ -45,7 +63,7 @@ def checkear():
     etiquetas = request.form.get("etiquetas")
     regalo = request.form.get("regalo")
 
-    persona = publico(nombre, apellido, email, cant_pases, cant_dos_dias, cant_tres_dias, camisas, etiquetas, regalo)
+    persona = publico(nombre, apellido, email, regalo)
     persona.alta()
 
     return redirect("/")

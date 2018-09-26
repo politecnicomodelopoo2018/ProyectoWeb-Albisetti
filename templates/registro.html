@@ -18,6 +18,7 @@
   <!--<link rel="stylesheet" href="../static/font-awesome/css/all.min.css">-->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Oswald|PT+Sans" rel="stylesheet">
+  <script type="text/javascript" src="../static/js/boletos.js"></script>
 </head>
 <body>
   <!--[if lte IE 9]>
@@ -141,6 +142,26 @@
                     </div>
                   </div>
                 </li>
+                {%for item in  listaBoletos%}
+                <li>
+                  <div class="tabla-precio">
+                    <h3>{{item.dia_boleto}}</h3>
+                    <p class="numero">{{item.costo_boleto}}</p>
+                    <ul>
+                      <li>Comida gratis</li>
+                      <li>Todas las conferencias</li>
+                      <li>Todos los talleres</li>
+                    </ul>
+                    <div class="orden">
+                        <label for="pase_dosdias">Boletos deseados:</label>
+                        <input name="{{item.dia_boleto}}" type="number" min="0" id="{{item.idBoletos}}" size="3" placeholder="0">
+                        <script> miPase = myFunction('{{item.idBoletos}}');
+                                 console.log(miPase);
+                        </script>
+                    </div>
+                  </div>
+                </li>
+                {%endfor%}
               </ul>
         </div> <!--paquetes-->
 
@@ -228,6 +249,12 @@
                             <label for="etiquetas">Paquete de 10 etiquetas $2<small> (HTML5, CSS3, JavaScript, Chrome)</small></label>
                             <input name="etiquetas" type="number" min="0" id="etiquetas" size="3" placeholder="0">
                     </div> <!--.orden-->
+                    {%for item in listaSuveniers%}
+                    <div class="orden">
+                            <label for="etiquetas"> {{item.descripcion_suvenier}} <small>{{item.costo_suvenier}}</small></label>
+                            <input name="{{item.descripcion_suvenier}}" type="number" min="0" id="etiquetas" size="3" placeholder="0">
+                    </div> <!--.orden-->
+                    {%endfor%}
                     <div class="orden">
                             <label for="regalo">Seleccione un regalo</label>
                             <select name="regalo" id="regalo" required>
