@@ -97,51 +97,10 @@
             <h3>Elige el número de boletos</h3>
 
             <ul class="lista-precios clearfix">
-                <li>
-                  <div class="tabla-precio">
-                    <h3>Pase por día (Viernes)</h3>
-                    <p class="numero">$30</p>
-                    <ul>
-                      <li>Comida gratis</li>
-                      <li>Todas las conferencias</li>
-                      <li>Todos los talleres</li>
-                    </ul>
-                    <div class="orden">
-                        <label for="pase_dia">Boletos deseados:</label>
-                        <input name="pase_dia" type="number" min="0" id="pase_dia" size="3" placeholder="0">
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="tabla-precio">
-                    <h3>Todos los días</h3>
-                    <p class="numero">$50</p>
-                    <ul>
-                      <li>Comida gratis</li>
-                      <li>Todas las conferencias</li>
-                      <li>Todos los talleres</li>
-                    </ul>
-                    <div class="orden">
-                        <label for="pase_completo">Boletos deseados:</label>
-                        <input name="pase_completo" type="number" min="0" id="pase_completo" size="3" placeholder="0">
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="tabla-precio">
-                    <h3>Pase por dos días (Viernes y Sabados)</h3>
-                    <p class="numero">$45</p>
-                    <ul>
-                      <li>Comida gratis</li>
-                      <li>Todas las conferencias</li>
-                      <li>Todos los talleres</li>
-                    </ul>
-                    <div class="orden">
-                        <label for="pase_dosdias">Boletos deseados:</label>
-                        <input name="pase_dosdias" type="number" min="0" id="pase_dosdias" size="3" placeholder="0">
-                    </div>
-                  </div>
-                </li>
+                <script>var lista = [];
+                        var listaPrecioBoleto = [];
+                        var listaDescripcionBoleto = [];
+                </script>
                 {%for item in  listaBoletos%}
                 <li>
                   <div class="tabla-precio">
@@ -153,10 +112,18 @@
                       <li>Todos los talleres</li>
                     </ul>
                     <div class="orden">
-                        <label for="pase_dosdias">Boletos deseados:</label>
-                        <input name="{{item.dia_boleto}}" type="number" min="0" id="{{item.idBoletos}}" size="3" placeholder="0">
-                        <script> miPase = myFunction('{{item.idBoletos}}');
-                                 console.log(miPase);
+                        <label for="A{{item.idBoletos}}">Boletos deseados:</label>
+                        <input name="{{item.dia_boleto}}" type="number" min="0" id="A{{item.idBoletos}}" size="3" placeholder="0">
+                        <script>
+                                 var pasarPase = 'A' + '{{item.idBoletos}}';
+                                 miPase = funcionPases(pasarPase);
+                                 lista.push(miPase);
+                                 var costoBoleto = '{{item.costo_boleto}}';
+                                 listaPrecioBoleto.push(costoBoleto);
+                                 var descripcionBoleto = '{{item.dia_boleto}}';
+                                 console.log('{{item.dia_boleto}}')
+                                 console.log(descripcionBoleto);
+                                 listaDescripcionBoleto.push(descripcionBoleto);
                         </script>
                     </div>
                   </div>
@@ -241,18 +208,25 @@
             <h3>Pago y extras</h3>
             <div class="caja clearfix">
                 <div class="extras">
-                    <div class="orden">
-                        <label for="camisa_evento">Camisa del evento $10<small> (promocion 7% dto.)</small></label>
-                        <input name="camisa_evento" type="number" min="0" id="camisa_evento" size="3" placeholder="0">
-                    </div> <!--.orden-->
-                    <div class="orden">
-                            <label for="etiquetas">Paquete de 10 etiquetas $2<small> (HTML5, CSS3, JavaScript, Chrome)</small></label>
-                            <input name="etiquetas" type="number" min="0" id="etiquetas" size="3" placeholder="0">
-                    </div> <!--.orden-->
+                    <script>var listaSuvenier = [];
+                            var listaPrecioSuvenier = [];
+                            var listaDescripcionSuvenier = [];
+                    </script>
                     {%for item in listaSuveniers%}
                     <div class="orden">
-                            <label for="etiquetas"> {{item.descripcion_suvenier}} <small>{{item.costo_suvenier}}</small></label>
-                            <input name="{{item.descripcion_suvenier}}" type="number" min="0" id="etiquetas" size="3" placeholder="0">
+                            <label for="B{{item.idSuveniers}}"> {{item.descripcion_suvenier}} <small>{{item.costo_suvenier}}</small></label>
+                            <input name="{{item.descripcion_suvenier}}" type="number" min="0" id="B{{item.idSuveniers}}" size="3" placeholder="0">
+                            <script>
+                                    var pasarSuvenier = 'B' + '{{item.idSuveniers}}';
+                                    var suvenier = funcionSuveniers(pasarSuvenier);
+                                    listaSuvenier.push(suvenier);
+                                    var precioSuvenier = {{item.costo_suvenier}};
+                                    listaPrecioSuvenier.push(precioSuvenier);
+                                    var descripcionSuv = '{{item.descripcion}}';
+                                    console.log('{{item.descripcion}}');
+                                    console.log(descripcionSuv);
+                                    listaDescripcionSuvenier.push(descripcionSuv);
+                            </script>
                     </div> <!--.orden-->
                     {%endfor%}
                     <div class="orden">

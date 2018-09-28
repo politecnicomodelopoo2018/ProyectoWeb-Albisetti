@@ -23,12 +23,6 @@
         var email = document.querySelector('#email');
 
 
-        //Campos Pases
-
-        var paseDia = document.querySelector('#pase_dia');
-        var paseDosDia = document.querySelector('#pase_dosdias');
-        var paseCompleto = document.querySelector('#pase_completo');
-
         //Botones y divs
         var calcular = document.querySelector('#calcular');
         var errorDiv = document.querySelector('#error');
@@ -42,9 +36,10 @@
 
         calcular.addEventListener('click', calcularMontos);
 
-        paseDia.addEventListener('blur', mostrarDias);
-        paseDosDia.addEventListener('blur', mostrarDias);
-        paseCompleto.addEventListener('blur', mostrarDias);
+        for(var i = 0; i < lista.length; i++){
+            console.log(lista[i]);
+            lista[i].addEventListener('blur', mostrarDias);
+        }
 
         nombre.addEventListener('blur', validarCampos);
         apellido.addEventListener('blur', validarCampos);
@@ -86,17 +81,31 @@
             }
             else{
                 console.log("Ya elegiste regalo");
-                var boletoDia = parseInt(paseDia.value, 10)||0,
-                    boletoDosDias = parseInt(paseDosDia.value, 10)||0,
-                    boletoCompleto = parseInt(paseCompleto.value, 10)||0,
-                    cantidadCamisas = parseInt(camisas.value, 10)||0,
-                    cantidadEtiquetas =parseInt(etiquetas.value, 10)||0;
+                var boletoDia = parseInt(lista[0].value, 10)||0,
+                    boletoDosDias = parseInt(lista[2].value, 10)||0,
+                    boletoCompleto = parseInt(lista[1].value, 10)||0,
+                    cantidadCamisas = parseInt(listaSuvenier[0].value, 10)||0,
+                    cantidadEtiquetas = parseInt(listaSuvenier[1].value, 10)||0;
 
-                var totalAPagar = (boletoDia * 30) + (boletoDosDias * 45) + (boletoCompleto * 50) + ((cantidadCamisas * 10) * .93) + (cantidadEtiquetas * 2);
+                var totalAPagar = 0;
+
+                var superLista = lista + listaSuvenier;
+                var superListaPrecios = listaPrecioBoleto + listaPrecioSuvenier;
+                var superListaDescripcion = listaDescripcionBoleto + listaDescripcionSuvenier;
+
+                for(var i = 0; i < superLista.length; i++){
+                    console.log(superLista[i].value);
+                    console.log(superListaDescripcion[i]);
+                    totalAPagar = (parseInt(superLista[i].value, 10))*(superListaPrecios[i]);
+                    console.log(totalAPagar);
+                }
+
+                /*var totalAPagar = (boletoDia * listaPrecioBoleto[0]) + (boletoDosDias * listaPrecioBoleto[2]) + (boletoCompleto * listaPrecioBoleto[1]) + ((cantidadCamisas * listaPrecioSuvenier[0]) * .93) + (cantidadEtiquetas * listaPrecioSuvenier[1]);
+                    */
 
                 var listaProductos = [];
 
-                if(boletoDia >= 1){
+                /*if(boletoDia >= 1){
                     listaProductos.push(boletoDia + ' Pases por día');
                 }
                 if(boletoDosDias >= 1){
@@ -110,6 +119,13 @@
                 }
                 if(cantidadEtiquetas >= 1){
                     listaProductos.push(cantidadEtiquetas + ' Etiquetas');
+                }*/
+
+                for(var i = 0; i < superListaDescripcion.length; i++){
+                    if(superLista[i].value >= 1){
+                        listaProductos.push(superLista[i] + superListaDescripcion[i]);
+                        console.log(listaProductos[i])
+                    }
                 }
 
                 lista_productos.style.display = 'block';
@@ -123,9 +139,10 @@
         }
 
         function mostrarDias(){
-            var boletoDia = parseInt(paseDia.value, 10)||0,
-                boletoDosDias = parseInt(paseDosDia.value, 10)||0,
-                boletoCompleto = parseInt(paseCompleto.value, 10)||0;
+
+            var boletoDia = parseInt(lista[0].value, 10)||0,
+                boletoDosDias = parseInt(lista[2].value, 10)||0,
+                boletoCompleto = parseInt(lista[1].value, 10)||0;
 
             var diasElegidos = [];
 
