@@ -38,8 +38,8 @@
         <div class="informacion-evento">
           <p class="fecha"><i class="fas fa-calendar-alt"></i>10-12 Nov</p>
           <p class="ciudad"><i class="fas fa-map-marker-alt"></i>Buenos Aires, AR</p>
-          <h1 class="nombre-sitio">GDLWEBCAMP</h1>
-          <p class="slogan">La mejor conferencia de <span>diseño web</span> (by Albi)</p>
+          <h1 class="nombre-sitio">ALBICON</h1>
+          <p class="slogan">La mejor conferencia de <span>Albi</span> (by Albi)</p>
         </div>
         <!--.informacion-evento-->
 
@@ -52,7 +52,7 @@
     <div class="contenedor clearfix">
       <div class="logo" id="logotipo">
         <a href="http://127.0.0.1:5000/">
-        <img src="../static/img/logo.svg" alt="logoConferencia">
+        <i class="fas fa-home"></i>
         </a>
       </div>
 
@@ -63,10 +63,7 @@
       </div>
 
       <nav class="navegacion-principal">
-        <a href="http://127.0.0.1:5000/conferencia">Conferencia</a>
-        <a href="http://127.0.0.1:5000/calendario">Calendario</a>
-        <a href="http://127.0.0.1:5000/invitados">Invitados</a>
-        <a href="http://127.0.0.1:5000/registro">Reservaciones</a>
+        <a href="/registro">Reservaciones</a>
       </nav>
     </div>
     <!--.contenedor-->
@@ -222,10 +219,12 @@
                                     listaSuvenier.push(suvenier);
                                     var precioSuvenier = {{item.costo_suvenier}};
                                     listaPrecioSuvenier.push(precioSuvenier);
-                                    var descripcionSuv = '{{item.descripcion}}';
-                                    console.log('{{item.descripcion}}');
+                                    var descripcionSuv = '{{item.descripcion_suvenier}}';
+                                    console.log('{{item.descripcion_suvenier}}');
                                     console.log(descripcionSuv);
+                                    console.log(listaDescripcionSuvenier);
                                     listaDescripcionSuvenier.push(descripcionSuv);
+                                    console.log(listaDescripcionSuvenier);
                             </script>
                     </div> <!--.orden-->
                     {%endfor%}
@@ -260,6 +259,12 @@
         </div> <!--#resumen-->
 
     </form>
+
+      <select name="sucursal" id="sucursal" required>
+          {% for item in listaSucursales%}
+          <option value="A{{item.idSucursal}}">- item.nombre_sucursal -</option>
+          {%endfor%}
+      </select>
 
   </section>
 

@@ -42,7 +42,7 @@ for item in suvenier:
 
 @app.route("/")
 def inicio():
-    return render_template("index.html", invitado = listaInvitados)
+    return render_template("index.html", listaInvitados = listaInvitados)
 
 @app.route("/registro")
 def registro():

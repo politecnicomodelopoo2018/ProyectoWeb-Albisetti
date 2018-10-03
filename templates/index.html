@@ -38,8 +38,8 @@
         <div class="informacion-evento">
           <p class="fecha"><i class="fas fa-calendar-alt"></i>10-12 Nov</p>
           <p class="ciudad"><i class="fas fa-map-marker-alt"></i>Buenos Aires, AR</p>
-          <h1 class="nombre-sitio">GDLWEBCAMP</h1>
-          <p class="slogan">La mejor conferencia de <span>diseño web</span> (by Albi)</p>
+          <h1 class="nombre-sitio">ALBICON</h1>
+          <p class="slogan">La mejor conferencia de <span>Albi</span> (by Albi)</p>
         </div>
         <!--.informacion-evento-->
 
@@ -52,7 +52,7 @@
     <div class="contenedor clearfix">
       <div class="logo">
         <a href="http://127.0.0.1:5000/">
-          <img src="../static/img/logo.svg" alt="logoConferencia">
+          <i class="fas fa-home"></i>
         </a>
       </div>
 
@@ -63,10 +63,7 @@
       </div>
 
       <nav class="navegacion-principal">
-        <a href="http://127.0.0.1:5000/conferencia">Conferencia</a>
-        <a href="http://127.0.0.1:5000/calendario">Calendario</a>
-        <a href="http://127.0.0.1:5000/invitados">Invitados</a>
-        <a href="http://127.0.0.1:5000/registro">Reservaciones</a>
+        <a href="/registro">Reservaciones</a>
       </nav>
     </div>
     <!--.contenedor-->
@@ -127,78 +124,18 @@
 
   <section class="invitados contenedor seccion">
     <h2>Nuestros invitados</h2>
+
     <ul class="lista-invitados clearfix">
-      <li>
-        <div class="invitado">
-          <img src="../static/img/invitado1.jpg" alt="imagen primer invitado">
-          <p>Rafael Bautista</p>
-        </div>
-      </li>
 
+      {%for item in listaInvitados%}
       <li>
         <div class="invitado">
-          <img src="../static/img/invitado2.jpg" alt="imagen segundo invitado">
-          <p>Shari Herrera</p>
-        </div>
-      </li>
-
-      <li>
-        <div class="invitado">
-          <img src="../static/img/invitado3.jpg" alt="imagen tercer invitado">
-          <p>Gregorio Sanchez</p>
-        </div>
-      </li>
-
-      <li>
-        <div class="invitado">
-          <img src="../static/img/invitado4.jpg" alt="imagen cuarto invitado">
-          <p>Susana Rivera</p>
-        </div>
-      </li>
-
-      <li>
-        <div class="invitado">
-          <img src="../static/img/invitado5.jpg" alt="imagen quinto invitado">
-          <p>Harold Garcia</p>
-        </div>
-      </li>
-
-      <li>
-        <div class="invitado">
-          <img src="../static/img/invitado6.jpg" alt="imagen sexto invitado">
-          <p>Susan Sanchez</p>
-        </div>
-      </li>
-
-      <li>
-        <div class="invitado">
-          <img src="../static/img/invitado7.jpg" alt="imagen primer invitado especial">
-          <p>Nicolas Pruscino</p>
-        </div>
-      </li>
-
-      <li>
-        <div class="invitado">
-          <img src="../static/img/invitado8.jpg" alt="imagen segundo invitado especial">
-          <p>Enrique Toriggia</p>
-        </div>
-      </li>
-
-      <li>
-        <div class="invitado">
-          <img src="../static/img/invitado9.jpg" alt="imagen tercer invitado especial">
-          <p>Nestor Marinelli</p>
-        </div>
-      </li>
-
-      {%for item in invitado%}
-      <li>
-        <div class="invitado">
-          <img src='{{item.url_imagen}}' alt="imagen tercer invitado especial">
-          <p>{{item.nombre_invitado}}{{item.apellido_invitado}}</p>
+          <img src='{{item.url_imagen}}' alt="imagen {{item.nombre_invitado}}">
+          <p>{{item.nombre_invitado}} {{item.apellido_invitado}}</p>
         </div>
       </li>
       {%endfor%}
+
     </ul>
   </section>
 

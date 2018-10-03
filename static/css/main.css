@@ -264,7 +264,7 @@ div.informacion-evento{
 div.informacion-evento p{
     margin: 0;
     display: inline;
-    font-size: 20px;
+    font-size: 15px;
     text-transform: uppercase;
 }
 
@@ -322,11 +322,12 @@ div.logo{
     float: left;
 }
 
-div.logo img{
-    width: 100%;
+div.logo a{
+    color: #ffffff;
+    font-size: 3em;
 }
 
-div.logo img:hover{
+div.logo a:hover{
     cursor: pointer;
 }
 

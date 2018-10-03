@@ -89,14 +89,18 @@
 
                 var totalAPagar = 0;
 
-                var superLista = lista + listaSuvenier;
-                var superListaPrecios = listaPrecioBoleto + listaPrecioSuvenier;
-                var superListaDescripcion = listaDescripcionBoleto + listaDescripcionSuvenier;
+                var superLista = lista.concat(listaSuvenier);
+                var superListaPrecios = listaPrecioBoleto.concat(listaPrecioSuvenier);
+                var superListaDescripcion = listaDescripcionBoleto.concat(listaDescripcionSuvenier);
+
+                var valor = 0
 
                 for(var i = 0; i < superLista.length; i++){
-                    console.log(superLista[i].value);
-                    console.log(superListaDescripcion[i]);
-                    totalAPagar = (parseInt(superLista[i].value, 10))*(superListaPrecios[i]);
+                    valor = parseInt(superLista[i].value, 10);
+                    console.log(valor);
+                    if(valor > 0){
+                        totalAPagar = totalAPagar + (valor * (superListaPrecios[i]));
+                    }
                     console.log(totalAPagar);
                 }
 
@@ -122,8 +126,9 @@
                 }*/
 
                 for(var i = 0; i < superListaDescripcion.length; i++){
+                    valor = superLista[i]
                     if(superLista[i].value >= 1){
-                        listaProductos.push(superLista[i] + superListaDescripcion[i]);
+                        listaProductos.push(superLista[i].value + " " + superListaDescripcion[i]);
                         console.log(listaProductos[i])
                     }
                 }
