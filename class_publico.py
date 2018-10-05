@@ -8,10 +8,11 @@ class publico(object):
     email = None
     regalo = None
 
-    def __init__(self, idPublico = None, nombre_persona = None, email = None, regalo = None):
+    def __init__(self, idPublico = None, nombre_persona = None, apellido_persona = None, email = None, regalo = None):
 
         self.idPublico = idPublico
         self.nombre_persona = nombre_persona
+        self.apellido_persona = apellido_persona
         self.email = email
         self.regalo = regalo
 
@@ -25,12 +26,15 @@ class publico(object):
             gente.idPublico = item["idPublico"]
             gente.nombre_persona = item["nombre_persona"]
             gente.apellido_persona = item["apellido_persona"]
+            gente.email = item["email"]
             gente.regalo = item["regalo"]
 
         return gente
 
     def alta(self):
 
-        Database().run("INSERT INTO publico VALUES(NULL, '%s', '%s', '%s')"% (self.nombre_persona,
+        cosa = Database().run("INSERT INTO publico VALUES(NULL, '%s', '%s', '%s', '%s')" % (self.nombre_persona,
                                                                               self.apellido_persona,
+                                                                              self.email,
                                                                               self.regalo))
+        return cosa

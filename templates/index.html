@@ -162,42 +162,20 @@
     <h2>Precios</h2>
     <div class="contenedor">
       <ul class="lista-precios clearfix">
+        {%for item in listaBoletos%}
         <li>
           <div class="tabla-precio">
-            <h3>Pase por día</h3>
-            <p class="numero">$30</p>
+            <h3>{{item.dia_boleto}}</h3>
+            <p class="numero">{{item.costo_boleto}}</p>
             <ul>
               <li>Comida gratis</li>
               <li>Todas las conferencias</li>
               <li>Todos los talleres</li>
             </ul>
-            <a href="#" class="button hollow">Comprar</a>
+            <a href="/registro" class="button hollow">Comprar</a>
           </div>
         </li>
-        <li>
-          <div class="tabla-precio">
-            <h3>Todos los días</h3>
-            <p class="numero">$50</p>
-            <ul>
-              <li>Comida gratis</li>
-              <li>Todas las conferencias</li>
-              <li>Todos los talleres</li>
-            </ul>
-            <a href="#" class="button">Comprar</a>
-          </div>
-        </li>
-        <li>
-          <div class="tabla-precio">
-            <h3>Pase por dos días</h3>
-            <p class="numero">$45</p>
-            <ul>
-              <li>Comida gratis</li>
-              <li>Todas las conferencias</li>
-              <li>Todos los talleres</li>
-            </ul>
-            <a href="#" class="button hollow">Comprar</a>
-          </div>
-        </li>
+        {%endfor%}
       </ul>
     </div>
     <!--.contenedor-->
@@ -206,55 +184,11 @@
   <div id="mapa" class="mapa">
   </div>
 
-  <section class="seccion">
-    <h2>Testimoniales</h2>
-    <div class="testimonales contenedor clearfix">
-      <div class="testimonial">
-        <blockquote>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nulla enim, rutrum non sagittis sed, lobortis
-            vel eros.</p>
-          <footer class="info-testimonial clearfix">
-            <img src="../static/img/testimonial.jpg" alt="imagen testimonial">
-            <cite>Oswaldo Apontes Escobedo <span>Diseñador en @prisma</span></cite>
-          </footer>
-        </blockquote>
-      </div>
-      <!--.testimonial-->
-
-      <div class="testimonial">
-        <blockquote>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nulla enim, rutrum non sagittis sed, lobortis
-            vel eros.
-          </p>
-          <footer class="info-testimonial clearfix">
-            <img src="../static/img/testimonial.jpg" alt="imagen testimonial">
-            <cite>Oswaldo Apontes Escobedo <span>Diseñador en @prisma</span></cite>
-          </footer>
-        </blockquote>
-      </div>
-      <!--.testimonial-->
-
-      <div class="testimonial">
-        <blockquote>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nulla enim, rutrum non sagittis sed, lobortis
-            vel eros.
-          </p>
-          <footer class="info-testimonial clearfix">
-            <img src="../static/img/testimonial.jpg" alt="imagen testimonial">
-            <cite>Oswaldo Apontes Escobedo <span>Diseñador en @prisma</span></cite>
-          </footer>
-        </blockquote>
-      </div>
-      <!--.testimonial-->
-    </div>
-    <!--.testimoniales contenedor-->
-  </section>
-
   <div class="newsletter parallax">
     <div class="contenido contenedor">
       <p>Registrate al newsletter</p>
-      <h3>GDLWEBCAMP</h3>
-      <a href="#" class="button transparente">Registro</a>
+      <h3>ALBICON</h3>
+      <a href="/registro" class="button transparente">Registro</a>
     </div>
     <!--.contenido-->
   </div>

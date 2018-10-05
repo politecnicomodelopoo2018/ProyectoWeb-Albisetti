@@ -19,6 +19,15 @@ class Database(object):
         self.__passwd = passwd
         self.__db = db
 
+    def conexion(self):
+        db = pymysql.connect(host=self.__host,
+                             user=self.__user,
+                             passwd=self.__passwd,
+                             db=self.__db,
+                             autocommit=True
+                             )
+        return db
+
     def run(self, query):
         db = pymysql.connect(host=self.__host,
                              user=self.__user,

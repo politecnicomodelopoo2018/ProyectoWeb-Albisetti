@@ -132,6 +132,29 @@
         <div id="eventos" class="eventos clearfix">
             <h3>Elige tus talleres</h3>
             <div class="caja">
+                {%for item in listaEventos%}
+                <div id="viernes" class="contenido-dia clearfix">
+                      <h4>Viernes</h4>
+                          <div>
+                              <p>Talleres:</p>
+                              <label><input type="checkbox" name="registro[]" id="taller_01" value="taller_01"><time>10:00</time> Responsive Web Design</label>
+                              <label><input type="checkbox" name="registro[]" id="taller_02" value="taller_02"><time>12:00</time> Flexbox</label>
+                              <label><input type="checkbox" name="registro[]" id="taller_03" value="taller_03"><time>14:00</time> HTML5 y CSS3</label>
+                              <label><input type="checkbox" name="registro[]" id="taller_04" value="taller_04"><time>17:00</time> Drupal</label>
+                              <label><input type="checkbox" name="registro[]" id="taller_05" value="taller_05"><time>19:00</time> WordPress</label>
+                          </div>
+                          <div>
+                              <p>Conferencias:</p>
+                              <label><input type="checkbox" name="registro[]" id="conf_01" value="conf_01"><time>10:00</time> Como ser Freelancer</label>
+                              <label><input type="checkbox" name="registro[]" id="conf_02" value="conf_02"><time>17:00</time> Tecnologías del Futuro</label>
+                              <label><input type="checkbox" name="registro[]" id="conf_03" value="conf_03"><time>19:00</time> Seguridad en la Web</label>
+                          </div>
+                          <div>
+                              <p>Seminarios:</p>
+                              <label><input type="checkbox" name="registro[]" id="sem_01" value="sem_01"><time>10:00</time> Diseño UI y UX para móviles</label>
+                          </div>
+                  </div>
+                  {%endfor%}
                   <div id="viernes" class="contenido-dia clearfix">
                       <h4>Viernes</h4>
                           <div>

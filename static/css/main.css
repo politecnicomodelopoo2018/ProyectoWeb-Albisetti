@@ -679,6 +679,7 @@ div.tabla-precio p.numero{
 
 div.mapa{
     height: 450px;
+    margin: 20px 0;
     background: green;
 }
 
