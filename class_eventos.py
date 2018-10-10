@@ -5,7 +5,7 @@ class eventos(object):
 
     idEvento = None
     nombre_evento = None
-    fecha_evento = None
+    dia_evento = None
     hora_evento = None
     clave = None
     idCategoria = None
@@ -20,7 +20,7 @@ class eventos(object):
         for item in info:
             evento.idEvento = item["idEvento"]
             evento.nombre_evento = item["nombre_evento"]
-            evento.fecha_evento = item["fecha_evento"]
+            evento.dia_evento = item["dia_evento"]
             evento.hora_evento = item["hora_evento"]
             evento.clave = item["clave"]
             evento.idCategoria = item["idCategoria"]

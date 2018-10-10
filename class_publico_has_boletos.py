@@ -14,8 +14,5 @@ class publico_has_boletos(object):
 
     def alta(self):
 
-        print("INSERT INTO publico_has_boletos VALUES(%s, %s, '%s')"%(self.idPublico, self.idBoletos,
-                                                                               self.cantidad_boletos))
-
         Database().run("INSERT INTO publico_has_boletos VALUES(%s, %s, '%s')"%(self.idPublico, self.idBoletos,
                                                                                self.cantidad_boletos))

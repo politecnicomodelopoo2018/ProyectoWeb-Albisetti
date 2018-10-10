@@ -4,8 +4,6 @@ class categoria_evento(object):
 
     idCategoria = None
     cat_evento = None
-    icono = None
-
 
     @staticmethod
     def cargar(id):
@@ -16,7 +14,6 @@ class categoria_evento(object):
         for item in info:
             categoria.idCategoria = item["idCategoria"]
             categoria.cat_evento = item["cat_evento"]
-            categoria.icono = item["icono"]
 
         return categoria
 
