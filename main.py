@@ -1,6 +1,9 @@
 from pymysql import *
-from flask import request, jsonify, render_template, Flask, redirect
+from flask import request, jsonify, render_template, Flask, redirect, session
 from database import *
+import hashlib
+import base64
+import uuid
 
 from class_invitados import *
 from class_boletos import *
@@ -14,11 +17,16 @@ from class_publico_has_boletos import *
 
 Data = Database()
 
+
 Data.setConnection("127.0.0.1", "root", "alumno", "web")
 
 app = Flask(__name__)
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+
 
 invitado = Data.run("SELECT * FROM invitados")
+
+password = "&Administrador200&"
 
 listaInvitados = []
 
@@ -57,8 +65,6 @@ for item in eventoL:
         listaDias.append(diaAnterior)
 
     listaEventos.append(evento)
-
-print(listaDias)
 
 categoriaL = Data.run("SELECT * FROM categoria_evento")
 
@@ -114,16 +120,36 @@ def checkear():
 
     return redirect("/")
 
-@app.route("/calendario")
-def calendario():
+@app.route("/adminLogin")
+def adminLogin():
 
-    return render_template("calendario.html")
+    return render_template("adminLogin.html")
+
+
+@app.route("/adminCheck", methods=["GET", "POST"])
+def adminCheck():
+    nombreAdmin = request.form.get("nombre_admin")
+    contraseña = request.form.get("contraseña")
+
+    administradores = Data.run("SELECT * FROM admins")
+
+    for item in administradores:
+        if nombreAdmin == item["usuario_admin"] and hashlib.sha512(contraseña.encode('utf-8')).hexdigest() == item["password_admin"]:
+            session["admin"] = item["idAdmin"]
+            return redirect("/admin")
+
+
+
+    return redirect("/")
+
 
 @app.route("/admin")
 def admin():
-
-    return render_template()
-
+    if "admin" in session:
+        return render_template("admin.html", listaSuveniers = listaSuveniers, listaEventos = listaEventos,
+                               listaBoletos = listaBoletos, listaInvitados = listaInvitados)
+    else:
+        return redirect("/")
 
 @app.route("/admin=post", methods=["GET", "POST"])
 def adminPost():

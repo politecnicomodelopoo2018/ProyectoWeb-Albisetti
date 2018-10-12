@@ -18,8 +18,8 @@
   <!--<link rel="stylesheet" href="../static/font-awesome/css/all.min.css">-->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Oswald|PT+Sans" rel="stylesheet">
+  <script type="text/javascript" src="../static/js/boletos.js"></script>
 </head>
-
 <body>
   <!--[if lte IE 9]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
@@ -38,8 +38,8 @@
         <div class="informacion-evento">
           <p class="fecha"><i class="fas fa-calendar-alt"></i>10-12 Nov</p>
           <p class="ciudad"><i class="fas fa-map-marker-alt"></i>Buenos Aires, AR</p>
-          <h1 class="nombre-sitio">GDLWEBCAMP</h1>
-          <p class="slogan">La mejor conferencia de <span>diseño web</span> (by Albi)</p>
+          <h1 class="nombre-sitio">ALBICON</h1>
+          <p class="slogan">La mejor conferencia de <span>Albi</span> (by Albi)</p>
         </div>
         <!--.informacion-evento-->
 
@@ -52,7 +52,7 @@
     <div class="contenedor clearfix">
       <div class="logo" id="logotipo">
         <a href="http://127.0.0.1:5000/">
-          <img src="../static/img/logo.svg" alt="logoConferencia">
+        <i class="fas fa-home"></i>
         </a>
       </div>
 
@@ -63,20 +63,60 @@
       </div>
 
       <nav class="navegacion-principal">
-        <a href="http://127.0.0.1:5000/conferencia">Conferencia</a>
-        <a href="http://127.0.0.1:5000/calendario">Calendario</a>
-        <a href="http://127.0.0.1:5000/invitados">Invitados</a>
-        <a href="http://127.0.0.1:5000/registro">Reservaciones</a>
+        <a href="/registro">Reservaciones</a>
       </nav>
     </div>
     <!--.contenedor-->
   </div>
   <!--.barra-->
 
-  <footer class="site-footer">
+
+    <section class="invitados contenedor seccion">
+    <h2>Nuestros invitados</h2>
+
+    <ul class="lista-invitados clearfix">
+
+      {%for item in listaInvitados%}
+      <li>
+        <div class="invitado">
+          <img src='{{item.url_imagen}}' alt="imagen {{item.nombre_invitado}}">
+          <p>{{item.nombre_invitado}} {{item.apellido_invitado}}</p>
+        </div>
+        <div>
+          <input id="btnBorrarInvitado" type="submit" class="button" value="Borrar">
+        </div>
+      </li>
+      {%endfor%}
+    </ul>
+    <input id="btnAgregarInvitado" type="submit" class="button" value="Agregar">
+    </section>
+  <section class="seccion contenedor">
+    <div id="paquetes" class="paquetes">
+            <h3>Boletos</h3>
+
+            <ul class="lista-precios clearfix">
+                <script>var lista = [];
+                        var listaPrecioBoleto = [];
+                        var listaDescripcionBoleto = [];
+                </script>
+                {%for item in  listaBoletos%}
+                <li>
+                  <div class="tabla-precio">
+                    <h3>{{item.dia_boleto}}</h3>
+                    <p class="numero">{{item.costo_boleto}}</p>
+                  </div>
+                    <input id="btnBorrarBoleto" type="submit" class="button" value="Borrar">
+                </li>
+                {%endfor%}
+              </ul>
+        </div> <!--paquetes-->
+      <input id="btnAgregarBoleto" type="submit" class="button" value="Agregar">
+    </section>
+
+    <footer class="site-footer">
     <div class="contenedor clearfix">
       <div class="footer-informacion">
-        <h3>Sobre <span>GDLWEBCAMP</span></h3>
+        <h3>Sobre <span>ALBICON</span></h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nulla enim, rutrum non sagittis sed, lobortis
           vel eros. Phasellus a mollis tortor, a aliquet odio. Ut eu justo nec ligula scelerisque interdum eget a nunc. Donec
           vulputate elementum viverra.
@@ -102,9 +142,15 @@
       </div> <!--.redes-sociales-->
     </div> <!--.contenedor-->
 
-    <p class="copyright">Todos los derechos reservados by Albi &copy; </p>
+  <p class="copyright">Todos los derechos reservados by Albi &copy; </p>
+
+
+
+
 
   </footer>
+
+  <!-- Add your site or application content here -->
 
   <script src="static/js/vendor/modernizr-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

@@ -994,6 +994,27 @@ error{
     text-align: center;
 }
 
+/*Admin*/
+
+form.login label{
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+div.campoAdmin{
+    padding: 20px;
+}
+
+@media only screen and (min-width: 768px){
+    div.campoAdmin{
+        float: left;
+        width: 50%;
+    }
+
+}
+
+
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
