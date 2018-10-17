@@ -63,6 +63,7 @@
       </div>
 
       <nav class="navegacion-principal">
+        <a href="/logout">LogOut</a>
         <a href="/registro">Reservaciones</a>
       </nav>
     </div>
@@ -70,48 +71,7 @@
   </div>
   <!--.barra-->
 
-
-    <section class="invitados contenedor seccion">
-    <h2>Nuestros invitados</h2>
-
-    <ul class="lista-invitados clearfix">
-
-      {%for item in listaInvitados%}
-      <li>
-        <div class="invitado">
-          <img src='{{item.url_imagen}}' alt="imagen {{item.nombre_invitado}}">
-          <p>{{item.nombre_invitado}} {{item.apellido_invitado}}</p>
-        </div>
-        <div>
-          <input id="btnBorrarInvitado" type="submit" class="button" value="Borrar">
-        </div>
-      </li>
-      {%endfor%}
-    </ul>
-    <input id="btnAgregarInvitado" type="submit" class="button" value="Agregar">
-    </section>
-  <section class="seccion contenedor">
-    <div id="paquetes" class="paquetes">
-            <h3>Boletos</h3>
-
-            <ul class="lista-precios clearfix">
-                <script>var lista = [];
-                        var listaPrecioBoleto = [];
-                        var listaDescripcionBoleto = [];
-                </script>
-                {%for item in  listaBoletos%}
-                <li>
-                  <div class="tabla-precio">
-                    <h3>{{item.dia_boleto}}</h3>
-                    <p class="numero">{{item.costo_boleto}}</p>
-                  </div>
-                    <input id="btnBorrarBoleto" type="submit" class="button" value="Borrar">
-                </li>
-                {%endfor%}
-              </ul>
-        </div> <!--paquetes-->
-      <input id="btnAgregarBoleto" type="submit" class="button" value="Agregar">
-    </section>
+  <h2>Publico registrado</h2>
 
     <footer class="site-footer">
     <div class="contenedor clearfix">

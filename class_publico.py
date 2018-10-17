@@ -38,3 +38,7 @@ class publico(object):
                                                                               self.email,
                                                                               self.regalo))
         return cosa
+
+    def baja(self):
+
+        Database.run("Delete From publico where idPublico = %s)" %(self.idPublico))

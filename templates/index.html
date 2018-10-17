@@ -63,6 +63,9 @@
       </div>
 
       <nav class="navegacion-principal">
+        {%if "admin" in session%}
+          <a href="/admin">Admin</a>
+        {%endif%}
         <a href="/registro">Reservaciones</a>
       </nav>
     </div>
@@ -166,7 +169,7 @@
         <li>
           <div class="tabla-precio">
             <h3>{{item.dia_boleto}}</h3>
-            <p class="numero">{{item.costo_boleto}}</p>
+            <p class="numero">${{item.costo_boleto}}</p>
             <ul>
               <li>Comida gratis</li>
               <li>Todas las conferencias</li>
@@ -181,8 +184,11 @@
     <!--.contenedor-->
   </section>
 
-  <div id="mapa" class="mapa">
-  </div>
+  <section>
+    <h2>Ubicacion</h2>
+    <div id="mapa" class="mapa">
+    </div>
+  </section>
 
   <div class="newsletter parallax">
     <div class="contenido contenedor">
@@ -199,19 +205,54 @@
     <div class="cuenta-regresiva contenedor">
       <ul class="clearfix">
         <li>
-          <p class="numero">80</p> Días
+          <p id="dias" class="numero">80</p> Días
         </li>
         <li>
-          <p class="numero">15</p> Horas
+          <p id="horas" class="numero">15</p> Horas
         </li>
         <li>
-          <p class="numero">5</p> Minutos
+          <p id="minutos" class="numero">5</p> Minutos
         </li>
         <li>
-          <p class="numero">30</p> Segundos
+          <p id="segundos" class="numero">30</p> Segundos
         </li>
       </ul>
     </div>
+
+    <script>
+      // Set the date we're counting down to
+      var countDownDate = new Date("Jan 5, 2019 15:37:25").getTime();
+
+      // Update the count down every 1 second
+      var x = setInterval(function() {
+
+          // Get todays date and time
+          var now = new Date().getTime();
+
+          // Find the distance between now and the count down date
+          var distance = countDownDate - now;
+
+          // Time calculations for days, hours, minutes and seconds
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          // Output the result in an element with id="demo"
+          document.getElementById("dias").innerHTML = days;
+          document.getElementById("horas").innerHTML = hours;
+          document.getElementById("minutos").innerHTML = minutes;
+          document.getElementById("segundos").innerHTML = seconds;
+
+
+          // If the count down is over, write some text
+          if (distance < 0) {
+              clearInterval(x);
+              document.getElementById("demo").innerHTML = "EXPIRED";
+          }
+      }, 1000);
+</script>
+
   </section>
 
   <footer class="site-footer">

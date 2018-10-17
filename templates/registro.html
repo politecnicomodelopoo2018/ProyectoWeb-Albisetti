@@ -70,7 +70,6 @@
   </div>
   <!--.barra-->
 
-
   <section class="seccion contenedor">
     <h2>Registro Usuarios</h2>
     <form id="registro" class="registro" action="/registroCompleto" method="post">
@@ -102,7 +101,7 @@
                 <li>
                   <div class="tabla-precio">
                     <h3>{{item.dia_boleto}}</h3>
-                    <p class="numero">{{item.costo_boleto}}</p>
+                    <p class="numero">${{item.costo_boleto}}</p>
                     <ul>
                       <li>Comida gratis</li>
                       <li>Todas las conferencias</li>
@@ -138,16 +137,14 @@
                     <h4>{{meti}}</h4>
                     {%for cosa in listaCategorias%}
                     <div>
-
-                                 <p>{{cosa.cat_evento}}:</p>
-                            {%for item in listaEventos%}
-                                {%if cosa.idCategoria == item.idCategoria%}
-                                    {%if item.dia_evento == meti%}
-                                    <label><input type="checkbox" name="{{item.nombre_evento}}" id="evento_{{item.idEvento}}" value="{{item.idEvento}}"><time>{{item.hora_evento}}</time> {{item.nombre_evento}}</label>
-                                    {%endif%}
-                                {%endif%}
-                            {%endfor%}
-
+                        <p>{{cosa.cat_evento}}:</p>
+                        {%for item in listaEventos%}
+                        {%if cosa.idCategoria == item.idCategoria%}
+                        {%if item.dia_evento == meti%}
+                        <label><input type="checkbox" name="{{item.nombre_evento}}" id="evento_{{item.idEvento}}" value="{{item.idEvento}}"><time>{{item.hora_evento}}</time> {{item.nombre_evento}}</label>
+                        {%endif%}
+                        {%endif%}
+                        {%endfor%}
                   </div>
                     {%endfor%}
                   </div>

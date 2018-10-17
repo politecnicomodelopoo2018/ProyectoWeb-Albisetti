@@ -673,6 +673,7 @@ div.tabla-precio h3{
 div.tabla-precio p.numero{
     color: #000000;
     margin-top: 20px 0;
+    background-repeat:
 }
 
 /*Mapa*/
@@ -1012,6 +1013,11 @@ div.campoAdmin{
     }
 
 }
+
+div.personas{
+
+}
+
 
 
 

@@ -26,7 +26,8 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 invitado = Data.run("SELECT * FROM invitados")
 
-password = "&Administrador200&"
+password = "admin"
+
 
 listaInvitados = []
 
@@ -77,9 +78,10 @@ for item in categoriaL:
 
 @app.route("/")
 def inicio():
-    return render_template("index.html", listaInvitados = listaInvitados, listaBoletos = listaBoletos)
-
-
+    if "admin" in session:
+        return render_template("index.html", listaInvitados = listaInvitados, listaBoletos = listaBoletos, session = session)
+    else:
+        return render_template("index.html", listaInvitados=listaInvitados, listaBoletos=listaBoletos)
 
 @app.route("/registro")
 def registro():
@@ -146,14 +148,22 @@ def adminCheck():
 @app.route("/admin")
 def admin():
     if "admin" in session:
-        return render_template("admin.html", listaSuveniers = listaSuveniers, listaEventos = listaEventos,
-                               listaBoletos = listaBoletos, listaInvitados = listaInvitados)
+        listaPublico = []
+        cursorPublico = Data.run("SELECT * FROM publico")
+        for item in cursorPublico:
+            listaPublico.append(publico.cargar(item["idPublico"]))
+
+        return render_template("admin.html", listaPublico = listaPublico)
     else:
         return redirect("/")
 
+@app.route("/logout")
+def logout():
+    session.pop("admin", None)
+    return redirect("/")
+
 @app.route("/admin=post", methods=["GET", "POST"])
 def adminPost():
-
     return render_template()
 
 if __name__ == "__main__":
