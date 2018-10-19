@@ -10,9 +10,9 @@ class evento_has_publico(object):
         self.idPublico = idPublico
 
     @staticmethod
-    def cargar(id):
+    def cargar(idP, idE):
 
-        info = Database().run("Select * FROM eventos_has_publico")
+        info = Database().run("Select * FROM eventos_has_publico WHERE idPublico = %s AND idEvento = %s"%(idP, idE))
         evento_publico = evento_has_publico()
 
         for item in info:

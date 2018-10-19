@@ -41,4 +41,4 @@ class publico(object):
 
     def baja(self):
 
-        Database.run("Delete From publico where idPublico = %s)" %(self.idPublico))
+        Database.run("Delete From publico where idPublico = %s" % (self.idPublico))

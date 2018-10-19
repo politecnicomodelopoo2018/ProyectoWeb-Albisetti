@@ -71,7 +71,47 @@
   </div>
   <!--.barra-->
 
-  <h2>Publico registrado</h2>
+  <section class="seccion contenedor">
+
+    <form action="/admin=post" method="post">
+
+      <div id="publico" class="eventos clearfix">
+                <h2>Personas</h2>
+                <table>
+                  <tr>
+                   <th>Nombre</th>
+                   <th>Apellido</th>
+                   <th>Email</th>
+                   {%for diaBoleto in listaBoletos%}
+                   <th>Boleto {{diaBoleto.dia_boleto}}</th>
+                   {%endfor%}
+                   <th>Banear</th>
+                  </tr>
+                  {%for item in listaPublico%}
+                    <tr>
+                      <th>{{item.nombre_persona}}</th>
+                      <th>{{item.apellido_persona}}</th>
+                      <th>{{item.email}}</th>
+                        {%for boleto in listaPublicoBoleto%}
+                          {%if item.idPublico == boleto.idPublico%}
+                            <th>{{boleto.cantidad_boletos}}</th>
+                          {%endif%}
+                          {%else%}
+                            <th>None</th>
+                        {%endfor%}
+                      <th><input type="checkbox" name="{{item.email}}" id="A{{item.idPublico}}" value="{{item.idPublico}}"></th>
+                    </tr>
+                  {%endfor%}
+                </table>
+      </div>
+
+      <div class="total">
+        <input id="btnBanear" type="submit" class="button" value="Enviar">
+      </div>
+
+    </form>
+
+  </section>
 
     <footer class="site-footer">
     <div class="contenedor clearfix">

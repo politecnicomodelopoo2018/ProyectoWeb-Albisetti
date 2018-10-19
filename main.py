@@ -75,6 +75,14 @@ for item in categoriaL:
     categoria = categoria_evento.cargar(item["idCategoria"])
     listaCategorias.append(categoria)
 
+listaPublico = []
+cursorPublico = Data.run("SELECT * FROM publico")
+
+for item in cursorPublico:
+    listaPublico.append(publico.cargar(item["idPublico"]))
+
+print(listaPublico)
+
 
 @app.route("/")
 def inicio():
@@ -106,6 +114,8 @@ def checkear():
             cantidad_boleto = int(cantidad_boleto)
             if(cantidad_boleto > 0 and cantidad_boleto != None):
                 publico_has_boletos(idInsertada, item.idBoletos, cantidad_boleto).alta()
+        else:
+            publico_has_boletos(idInsertada, item.idBoletos, 0).alta()
 
     for item in listaSuveniers:
         cantidad_suvenier = request.form.get(item.descripcion_suvenier)
@@ -144,16 +154,17 @@ def adminCheck():
 
     return redirect("/")
 
-
 @app.route("/admin")
 def admin():
     if "admin" in session:
-        listaPublico = []
-        cursorPublico = Data.run("SELECT * FROM publico")
-        for item in cursorPublico:
-            listaPublico.append(publico.cargar(item["idPublico"]))
+        listaPublicoBoleto = []
+        cursorPublicoBoleto = Data.run("SELECT * FROM publico_has_boletos")
+        for item in cursorPublicoBoleto:
+            listaPublicoBoleto.append(publico_has_boletos.cargar(item["idPublico"], item["idBoletos"]))
 
-        return render_template("admin.html", listaPublico = listaPublico)
+
+        return render_template("admin.html", listaPublico = listaPublico, listaPublicoBoleto = listaPublicoBoleto,
+                               listaBoletos = listaBoletos)
     else:
         return redirect("/")
 
@@ -164,7 +175,15 @@ def logout():
 
 @app.route("/admin=post", methods=["GET", "POST"])
 def adminPost():
-    return render_template()
+    for item in listaPublico:
+        ban = request.form.get(item.email)
+        if(ban):
+            if(item.idPublico == int(ban)):
+                print("entre")
+                item.baja()
+                listaPublico.remove(item)
+
+    return redirect("/admin")
 
 if __name__ == "__main__":
     app.run(debug=True)
