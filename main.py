@@ -81,8 +81,6 @@ cursorPublico = Data.run("SELECT * FROM publico")
 for item in cursorPublico:
     listaPublico.append(publico.cargar(item["idPublico"]))
 
-print(listaPublico)
-
 
 @app.route("/")
 def inicio():
