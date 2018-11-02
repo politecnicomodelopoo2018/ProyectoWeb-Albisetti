@@ -29,3 +29,7 @@ class publico_has_boletos(object):
 
         Database().run("INSERT INTO publico_has_boletos VALUES(%s, %s, '%s')"%(self.idPublico, self.idBoletos,
                                                                                self.cantidad_boletos))
+
+    def bajaPublico(self):
+
+        Database().run("DELETE FROM publico_has_boletos WHERE idPublico = %s"%(self.idPublico))

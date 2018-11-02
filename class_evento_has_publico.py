@@ -28,3 +28,7 @@ class evento_has_publico(object):
 
         Database().run("DELETE FROM eventos_has_publico WHERE idPublico = '%s' AND idEvento = '%s'"%(self.idPublico,
                                                                                                     self.idEvento))
+
+    def bajaPublico(self):
+
+        Database().run("DELETE FROM eventos_has_publico WHERE idPublico = '%s'" % (self.idPublico))

@@ -15,3 +15,7 @@ class publico_has_suveniers(object):
     def alta(self):
          Database().run("INSERT INTO publico_has_suveniers VALUES(%s, %s, %s)" %(self.idPublico, self.idSuveniers,
                                                                                  self.cantidad_suveniers))
+
+    def bajaPublico(self):
+
+        Database().run("DELETE FROM publico_has_suveniers WHERE idPublico = %s" % (self.idPublico))

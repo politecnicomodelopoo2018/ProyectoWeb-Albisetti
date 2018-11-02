@@ -162,8 +162,12 @@ def admin():
         for item in cursorPublicoBoleto:
             listaPublicoBoleto.append(publico_has_boletos.cargar(item["idPublico"], item["idBoletos"]))
 
+        adminPublico = []
+        cursorAdminPublico = Data.run("SELECT * FROM publico")
+        for item in cursorAdminPublico:
+            adminPublico.append(publico.cargar(item["idPublico"]))
 
-        return render_template("admin.html", listaPublico = listaPublico, listaPublicoBoleto = listaPublicoBoleto,
+        return render_template("admin.html", listaPublico = adminPublico, listaPublicoBoleto = listaPublicoBoleto,
                                listaBoletos = listaBoletos)
     else:
         return redirect("/")
@@ -175,13 +179,24 @@ def logout():
 
 @app.route("/admin=post", methods=["GET", "POST"])
 def adminPost():
+    listaAux = []
+    cursorPublico = Data.run("SELECT * FROM publico")
+
+    for item in cursorPublico:
+        listaPublico.append(publico.cargar(item["idPublico"]))
+
     for item in listaPublico:
-        ban = request.form.get(item.email)
+        print(item.idPublico)
+        ban = request.form.get("A%s"% (item.idPublico))
+        print(ban)
         if(ban):
             if(item.idPublico == int(ban)):
                 print("entre")
                 item.baja()
-                listaPublico.remove(item)
+                listaAux.append(item)
+
+    for item in listaAux:
+        listaPublico.remove(item)
 
     return redirect("/admin")
 

@@ -1,4 +1,7 @@
 from database import *
+from class_publico_has_boletos import *
+from class_publico_has_suveniers import *
+from class_evento_has_publico import *
 
 class publico(object):
 
@@ -41,4 +44,12 @@ class publico(object):
 
     def baja(self):
 
-        Database.run("Delete From publico where idPublico = %s" % (self.idPublico))
+        objetoPublicoBoletos = publico_has_boletos(self.idPublico)
+        objetoPublicoSuveniers = publico_has_suveniers(self.idPublico)
+        objetoEventoPublico = evento_has_publico(None, self.idPublico)
+
+        objetoPublicoBoletos.bajaPublico()
+        objetoPublicoSuveniers.bajaPublico()
+        objetoEventoPublico.bajaPublico()
+
+        Database().run("Delete From publico where idPublico = %s" % (self.idPublico))
